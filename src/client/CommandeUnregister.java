@@ -14,6 +14,7 @@ public class CommandeUnregister implements Commande {
 		this.room = room;
 	}
 
+	@Override
 	public void execute() {
 		try {
 			room.unsubscribe(user.getPseudo());
@@ -23,6 +24,7 @@ public class CommandeUnregister implements Commande {
 		}
 	}
 
+	@Override
 	public void setUser(User user) {
 		this.user = user;
 	}

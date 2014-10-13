@@ -8,8 +8,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.rmi.RemoteException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -50,16 +48,19 @@ public class ChatUI {
 
 		// Gestion des évènements
 		window.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				window_windowClosing(e);
 			}
 		});
 		btnSend.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				btnSend_actionPerformed(e);
 			}
 		});
 		txtMessage.addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyReleased(KeyEvent event) {
 				if (event.getKeyChar() == '\n')
 					btnSend_actionPerformed(null);

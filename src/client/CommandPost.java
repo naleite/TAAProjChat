@@ -15,6 +15,7 @@ public class CommandPost implements Commande {
 	User user = null;
 	ChatUI ui = null;
 
+	@Override
 	public void execute() {
 		try {
 			room.postMessage(user.getPseudo(), ui.getMessage());
@@ -25,6 +26,7 @@ public class CommandPost implements Commande {
 	}
 
 
+	@Override
 	public void setUser(User user) {
 		this.user = user;
 	}

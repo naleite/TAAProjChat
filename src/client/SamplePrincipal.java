@@ -88,7 +88,8 @@ public class SamplePrincipal implements Principal, java.io.Serializable {
      *
      * @return the Sample username for this <code>SamplePrincipal</code>
      */
-    public String getName() {
+    @Override
+	public String getName() {
 	return name;
     }
 
@@ -99,7 +100,8 @@ public class SamplePrincipal implements Principal, java.io.Serializable {
      *
      * @return a string representation of this <code>SamplePrincipal</code>.
      */
-    public String toString() {
+    @Override
+	public String toString() {
 	return("SamplePrincipal:  " + name);
     }
 
@@ -117,7 +119,8 @@ public class SamplePrincipal implements Principal, java.io.Serializable {
      * @return true if the specified Object is equal equal to this
      *		<code>SamplePrincipal</code>.
      */
-    public boolean equals(Object o) {
+    @Override
+	public boolean equals(Object o) {
 	if (o == null)
 	    return false;
 
@@ -140,7 +143,8 @@ public class SamplePrincipal implements Principal, java.io.Serializable {
      *
      * @return a hash code for this <code>SamplePrincipal</code>.
      */
-    public int hashCode() {
+    @Override
+	public int hashCode() {
 	return name.hashCode();
     }
 }

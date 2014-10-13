@@ -27,6 +27,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 
 	}
 
+	@Override
 	public void subscribe(ChatUser user, String pseudo) throws RemoteException {
 		String message = "Connexion de " + pseudo;
 		this.postMessage("ChatRoom", message);
@@ -34,6 +35,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 		this.users.put(pseudo, user);
 	}
 
+	@Override
 	public void unsubscribe(String pseudo) throws RemoteException {
 		String message = "Deconnexion de " + pseudo;
 		System.out.println(message);
@@ -41,6 +43,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 		this.postMessage("ChatRoom", message);
 	}
 
+	@Override
 	public void postMessage(String pseudo, String message)
 			throws RemoteException {
 		String fullMessage = pseudo + " >> " + message;
@@ -51,6 +54,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 		}
 	}
 
+	@Override
 	public boolean authentification(String username, char[] password)
 			throws FailedLoginException, RemoteException {
 		// verify the username/password

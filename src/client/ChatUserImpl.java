@@ -4,9 +4,6 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.security.auth.Subject;
 import javax.security.auth.login.LoginException;
 
@@ -49,10 +46,12 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		((CommandPost) post).setUI(ui);
 	}
 
+	@Override
 	public void displayMessage(String message) throws RemoteException {
 		ui.displayMessage(message);
 	}
 
+	@Override
 	public void run() {
 		try {
 			SampleLoginModule lc = null;
@@ -89,7 +88,8 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 					System.err.println("Authentication failed:");
 					System.err.println("  " + le.getMessage());
 					try {
-						Thread.currentThread().sleep(3000);
+						Thread.currentThread();
+						Thread.sleep(3000);
 					} catch (Exception e) {
 						// ignore
 					}
@@ -113,6 +113,7 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		}
 	}
 
+	@Override
 	public String getPseudo() {
 		return pseudo;
 	}
