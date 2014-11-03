@@ -64,7 +64,6 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 			usernameCorrect = true;
 			if (password.length == this.alloweduser.get(username).length
 					&& testPassword(this.alloweduser.get(username), password)) {
-
 				// authentication succeeded!!!
 				passwordCorrect = true;
 				if (debug)

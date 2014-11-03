@@ -1,11 +1,20 @@
 package client;
 
-import java.rmi.RemoteException;
+
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
-	public static void main(String[] args) throws RemoteException {
-		new Thread(new ChatUserImpl("essai1")).start();
+	public static void main(String[] args) throws Exception {
+		//new Thread(new ChatUserImpl("essai1")).start();
+		//ChatUser chatuser = new ChatUserImpl("essai1");
+		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"chat-configuration.xml"});
+		ChatUser chatuser = (ChatUser) context.getBean("chatUser");
 		
+		new Thread(( ChatUserImpl)chatuser).start();
+		
+			
 	}
 
 }

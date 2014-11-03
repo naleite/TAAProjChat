@@ -14,17 +14,17 @@ import com.sun.security.auth.callback.DialogCallbackHandler;
 
 public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		Runnable, User {
-	private ChatRoom room = null;
+	private ChatRoom room=null;
 
-	private String pseudo = null;
+	private String pseudo=null;
 
-	private String name = null;
+	private String name=null ;
 
-	private ChatUI ui;
+	private ChatUI ui=null;
 
-	public ChatUserImpl(String name) throws RemoteException {
+	public ChatUserImpl() throws RemoteException {
 		super(); // Appel au constructeur de UnicastRemoteObject
-		this.name = name;
+		//this.name=name;
 		try {
 			this.room = (ChatRoom) Naming.lookup("rmi://localhost/ChatRoom");
 		} catch (Exception e) {
@@ -32,7 +32,6 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 			e.printStackTrace();
 			System.exit(0);
 		}
-
 		this.createIHM();
 		// this.requestPseudo();
 	}
@@ -117,5 +116,36 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 	public String getPseudo() {
 		return pseudo;
 	}
+
+	public ChatRoom getRoom() {
+		return room;
+	}
+
+	public void setRoom(ChatRoom room) {
+		this.room = room;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		
+	}
+
+	public ChatUI getUi() {
+		return ui;
+	}
+
+	public void setUi(ChatUI ui) {
+		this.ui = ui;
+	}
+
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
+
+	
 
 }

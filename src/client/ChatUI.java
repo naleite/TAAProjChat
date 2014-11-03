@@ -114,6 +114,42 @@ public class ChatUI {
 		return message;
 	}
 
+	public Commande getUnregister() {
+		return unregister;
+	}
+
+	public void setUnregister(Commande unregister) {
+		this.unregister = unregister;
+	}
+
+	public Commande getPostMessage() {
+		return postMessage;
+	}
+
+	public void setPostMessage(Commande postMessage) {
+		this.postMessage = postMessage;
+	}
+
+	public ChatUser getU() {
+		return u;
+	}
+
+	public void setU(ChatUser u) {
+		this.u = u;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
     
 
 }
