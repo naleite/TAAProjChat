@@ -38,7 +38,7 @@
  * maintenance of any nuclear facility. 
  */
 
-package client;
+package auth;
 
 import java.security.Principal;
 

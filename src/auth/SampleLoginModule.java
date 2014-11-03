@@ -38,7 +38,7 @@
  * maintenance of any nuclear facility. 
  */
 
-package client;
+package auth;
 
 import java.rmi.RemoteException;
 import java.util.Map;
@@ -105,8 +105,8 @@ public class SampleLoginModule implements LoginModule {
 
 	private ChatRoom room;
 
-	public SampleLoginModule(ChatRoom room) {
-		this.room = room;
+	public SampleLoginModule() {
+		
 	}
 
 	/**
@@ -342,4 +342,10 @@ public class SampleLoginModule implements LoginModule {
 	public Subject getSubject() {
 		return subject;
 	}
+
+	public void setRoom(ChatRoom room) {
+		this.room = room;
+	}
+	
+	
 }

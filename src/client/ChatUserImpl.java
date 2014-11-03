@@ -9,15 +9,17 @@ import javax.security.auth.Subject;
 import javax.security.auth.login.LoginException;
 
 import server.ChatRoom;
+import auth.SampleLoginModule;
 
 import com.sun.security.auth.callback.DialogCallbackHandler;
+
 import command.CommandPost;
 import command.Commande;
 import command.CommandeUnregister;
 
 
-public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
-		Runnable, User {
+public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,Runnable,
+		 User {
 	private ChatRoom room=null;
 
 	private String pseudo=null;
@@ -29,7 +31,7 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 	public ChatUserImpl() throws RemoteException {
 		super(); // Appel au constructeur de UnicastRemoteObject
 		//this.name=name;
-		try {
+		/*try {
 			//this.room = (ChatRoom) Naming.lookup("rmi://localhost/ChatRoom");
 		} catch (Exception e) {
 
@@ -38,7 +40,7 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		}
 		//this.createIHM();
 		// this.requestPseudo();
-	}
+*/	}
 
 	/*public void createIHM() {
 		Commande unreg = new CommandeUnregister();
@@ -57,57 +59,7 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 	@Override
 	public void run() {
 		try {
-			SampleLoginModule lc = null;
-			try {
-				lc = new SampleLoginModule(room);
-				//Set principals = new HashSet();
-				//principals
-				//		.add(new sample.principal.SamplePrincipal("testUser"));
-				//Subject mySubject = new Subject(false, principals,
-				//		new HashSet(), new HashSet());
-
-				lc.initialize(new Subject(), new DialogCallbackHandler(), null,
-						new HashMap());
-
-			} catch (SecurityException se) {
-				System.err.println("Cannot create LoginContext. "
-						+ se.getMessage());
-				System.exit(-1);
-			}
-
-			// the user has 3 attempts to authenticate successfully
-			int i;
-			for (i = 0; i < 3; i++) {
-				try {
-
-					// attempt authentication
-					lc.login();
-
-					// if we return with no exception, authentication succeeded
-					break;
-
-				} catch (LoginException le) {
-
-					System.err.println("Authentication failed:");
-					System.err.println("  " + le.getMessage());
-					try {
-						Thread.currentThread();
-						Thread.sleep(3000);
-					} catch (Exception e) {
-						// ignore
-					}
-
-				}
-			}
-
-			// did they fail three times?
-			if (i == 3) {
-				System.out.println("Sorry");
-				
-				System.exit(-1);
-			}
-
-			System.out.println("Authentication succeeded!");
+			//auth();
 			this.pseudo = ui.requestPseudo();
 			this.room.subscribe(this, this.pseudo);
 
@@ -150,6 +102,47 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		this.pseudo = pseudo;
 	}
 
-	
+/*	private void auth(){
+		SampleLoginModule lc = null;
+		try {
+			lc = new SampleLoginModule();
+			lc.setRoom(room);
+			lc.initialize(new Subject(), new DialogCallbackHandler(), null,
+					new HashMap());
+		} catch (SecurityException se) {
+			System.err.println("Cannot create LoginContext. "
+					+ se.getMessage());
+			System.exit(-1);
+		}
+
+		// the user has 3 attempts to authenticate successfully
+		int i;
+		for (i = 0; i < 3; i++) {
+			try {
+
+				// attempt authentication
+				lc.login();
+				break;
+
+			} catch (LoginException le) {
+
+				System.err.println("Authentication failed:");
+				System.err.println("  " + le.getMessage());
+				try {
+					Thread.currentThread();
+					Thread.sleep(3000);
+				} catch (Exception e) {
+
+				}
+
+			}
+		}
+
+		if (i == 3) {
+			System.out.println("Sorry");
+			
+			System.exit(-1);
+		}
+	}*/
 
 }
