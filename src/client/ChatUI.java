@@ -8,6 +8,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -16,10 +17,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import command.Commande;
+
 public class ChatUI {
 
-	private Commande  unregister;
-	private Commande  postMessage;
+	private Commande  unregister=null;
+	private Commande  postMessage=null;
 	
 	
 	private ChatUser u = null;
@@ -34,10 +37,10 @@ public class ChatUI {
 
 	private JButton btnSend = new JButton("Envoyer");
 
-	public ChatUI(ChatUser u,Commande post, Commande unregister) {
-
-		this.postMessage = post;
-		this.unregister = unregister;
+	//public ChatUI(ChatUser u,Commande post, Commande unregister) {
+	public ChatUI() {
+		//this.postMessage = post;
+		//this.unregister = unregister;
 		JPanel panel = (JPanel) this.window.getContentPane();
 		JScrollPane sclPane = new JScrollPane(txtOutput);
 		panel.add(sclPane, BorderLayout.CENTER);

@@ -1,7 +1,8 @@
-package client;
+package command;
 
 import java.rmi.RemoteException;
 
+import client.User;
 import server.ChatRoom;
 
 
@@ -10,8 +11,8 @@ public class CommandeUnregister implements Commande {
 	ChatRoom room = null;
 	User user = null;
 	
-	public CommandeUnregister(ChatRoom room) {
-		this.room = room;
+	public CommandeUnregister() {
+	//this.room=room;
 	}
 
 	@Override
@@ -27,6 +28,14 @@ public class CommandeUnregister implements Commande {
 	@Override
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public ChatRoom getRoom() {
+		return room;
+	}
+
+	public void setRoom(ChatRoom room) {
+		this.room = room;
 	}
 
 }

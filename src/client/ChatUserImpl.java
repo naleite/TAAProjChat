@@ -4,12 +4,16 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
+
 import javax.security.auth.Subject;
 import javax.security.auth.login.LoginException;
 
 import server.ChatRoom;
 
 import com.sun.security.auth.callback.DialogCallbackHandler;
+import command.CommandPost;
+import command.Commande;
+import command.CommandeUnregister;
 
 
 public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
@@ -26,24 +30,24 @@ public class ChatUserImpl extends UnicastRemoteObject implements ChatUser,
 		super(); // Appel au constructeur de UnicastRemoteObject
 		//this.name=name;
 		try {
-			this.room = (ChatRoom) Naming.lookup("rmi://localhost/ChatRoom");
+			//this.room = (ChatRoom) Naming.lookup("rmi://localhost/ChatRoom");
 		} catch (Exception e) {
 
 			e.printStackTrace();
 			System.exit(0);
 		}
-		this.createIHM();
+		//this.createIHM();
 		// this.requestPseudo();
 	}
 
-	public void createIHM() {
-		Commande unreg = new CommandeUnregister(room);
+	/*public void createIHM() {
+		Commande unreg = new CommandeUnregister();
 		unreg.setUser(this);
-		Commande post = new CommandPost(room);
+		Commande post = new CommandPost();
 		post.setUser(this);
-		ui = new ChatUI(this, post, unreg);
+		ui = new ChatUI();
 		((CommandPost) post).setUI(ui);
-	}
+	}*/
 
 	@Override
 	public void displayMessage(String message) throws RemoteException {

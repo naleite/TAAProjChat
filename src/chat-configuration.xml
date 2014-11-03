@@ -2,13 +2,49 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-		<bean id="chatUser" class="client.ChatUserImpl">
+		<bean id="chatuser" class="client.ChatUserImpl">
        				<!-- <constructor-arg name="name" value="essai1"/> -->
        				<property name="name" value="essai2"></property>
+       				<property name="room" >
+       					<ref bean="chatroom"/>	
+       				</property>
+       				<property name="ui" >
+       					<ref bean="ui"/>	
+       				</property>
        	</bean>
-       	<!--
-       	<bean id="chatui" class="client.ChatUI"></bean>
-       	-->
-       	
-
+       
+       	<bean id="comUnreg" class="command.CommandeUnregister">
+       			<property name="room">
+       					<ref bean="chatroom" />    					
+       			</property>
+       			<property name="user">
+       					<ref bean="chatuser" />    					
+       			</property>
+       	</bean>
+       	 	<bean id="comPost" class="command.CommandPost">
+       			<property name="room">
+       					<ref bean="chatroom" />    					
+       			</property>
+       			<property name="user">
+       					<ref bean="chatuser" />    					
+       			</property>
+       			<property name="ui">
+       					<ref bean="ui" />    					
+       			</property>
+       	</bean>
+       	<bean id="chatroom" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+			<property name="serviceUrl" value="rmi://127.0.1.1:1099/ChatRoom"/>
+			<property name="serviceInterface" value="server.ChatRoom"/>
+		</bean>
+		<bean id="ui" class="client.ChatUI">
+				<property name="u">
+       					<ref bean="chatuser" />    					
+       			</property>
+       			<property name="unregister">
+       					<ref bean="comUnreg" />    					
+       			</property>
+       			<property name="postMessage">
+       					<ref bean="comPost" />    					
+       			</property>
+		</bean>
 </beans>

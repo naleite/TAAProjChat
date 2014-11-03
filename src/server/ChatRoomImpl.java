@@ -11,7 +11,7 @@ import javax.security.auth.login.FailedLoginException;
 import client.ChatUser;
 
 
-public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
+public class ChatRoomImpl  implements ChatRoom {
 	private Hashtable<String, ChatUser> users = new Hashtable<String, ChatUser>();
 
 	private Hashtable<String, char[]> alloweduser = new Hashtable<String, char[]>();
@@ -22,7 +22,7 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 	public ChatRoomImpl() throws RemoteException {
 		super();
 		alloweduser.put("toto", "passtoto".toCharArray());
-		alloweduser.put("titi", "passtiti".toCharArray());
+		alloweduser.put("t", "t".toCharArray());
 		alloweduser.put("testUser", "testPassword".toCharArray());
 
 	}
@@ -99,14 +99,6 @@ public class ChatRoomImpl extends UnicastRemoteObject implements ChatRoom {
 		return result;
 	}
 
-	public static void main(String[] args) throws Exception {
-		try {
-			LocateRegistry.createRegistry(1099);
-		} catch (Exception e) {
-			System.err.println("Il y a deja un registre de lancer");
-		}
-
-		ChatRoomImpl room = new ChatRoomImpl();
-		Naming.rebind("ChatRoom", room);
-	}
+	//public static void main(String[] args) throws Exception {
+		
 }

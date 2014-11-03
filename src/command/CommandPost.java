@@ -1,14 +1,16 @@
-package client;
+package command;
 
 import java.rmi.RemoteException;
 
+import client.ChatUI;
+import client.User;
 import server.ChatRoom;
 
 
 public class CommandPost implements Commande {
 
-	public CommandPost(ChatRoom room) {
-		this.room = room;
+	public CommandPost() {
+		//this.room=room;
 	}
 
 	ChatRoom room = null;
@@ -34,6 +36,31 @@ public class CommandPost implements Commande {
 
 	public void setUI(ChatUI ui2) {
 		this.ui=ui2;
+	}
+
+
+	public ChatRoom getRoom() {
+		return room;
+	}
+
+
+	public void setRoom(ChatRoom room) {
+		this.room = room;
+	}
+
+
+	public ChatUI getUi() {
+		return ui;
+	}
+
+
+	public void setUi(ChatUI ui) {
+		this.ui = ui;
+	}
+
+
+	public User getUser() {
+		return user;
 	}
 
 }
