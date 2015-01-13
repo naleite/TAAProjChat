@@ -1,10 +1,5 @@
 package server;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
